@@ -7,9 +7,10 @@
   "extends": "airbnb",
   "rules": {
     "no-console": 0,
-  "arrow-body-style": ["error", "always"],
-  "react/jsx-filename-extension": [1, {
-    "extensions": [".js", ".jsx"]
-  }]
+    "react/prop-types": 0,
+    "arrow-body-style": ["error", "always"],
+    "react/jsx-filename-extension": [1, {
+      "extensions": [".js", ".jsx"]
+    }]
   }
 }
