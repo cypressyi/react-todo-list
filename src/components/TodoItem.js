@@ -1,12 +1,17 @@
 import React from 'react';
 
-function TodoItem(props) {
+function TodoItem({ keyprop, todoText, onItemClick }) {
   const handleClick = () => {
-    props.onItemClick(props.index);
+    onItemClick(keyprop);
   };
 
   return (
-    <li onClick={handleClick} >{props.todoText}</li>
+    <li
+      keyprop={keyprop}
+      onClick={handleClick}
+    >
+      {todoText}
+    </li>
   );
 }
 
