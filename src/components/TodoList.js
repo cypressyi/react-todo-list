@@ -21,6 +21,10 @@ class TodoList extends React.Component {
     const { inputText } = this.state;
     const newItems = [inputText, ...this.state.todoItems];
 
+    if (!inputText.trim()) {
+      return;
+    }
+
     this.setState({
       todoItems: newItems,
       inputText: '',
@@ -46,7 +50,7 @@ class TodoList extends React.Component {
             value={this.state.inputText}
             onChange={this.handleInputChange}
           />
-          <button type="submit">Add Item</button>
+          <button type="submit">Add</button>
         </form>
         <ul>
           {
