@@ -40,23 +40,21 @@ class App extends React.Component {
     });
   }
 
-  handleEditItemUpdate = (index, title) => {
+  handleEditItemUpdate = (keyprop, title) => {
     if (title.trim()) {
       const newItems = [...this.state.todoItems];
-
-      newItems[index].title = title;
-      newItems[index].isEditing = !newItems[index].isEditing;
+      newItems.forEach((item) => {
+        if (item.id === keyprop) {
+          item.title = title;
+          item.isEditing = !item.isEditing;
+        }
+      });
 
       this.setState({
         todoItems: newItems,
       });
     } else {
-      const newItems = [...this.state.todoItems];
-      newItems[index].isEditing = !newItems[index].isEditing;
-
-      this.setState({
-        todoItems: newItems,
-      });
+      this.handleRemoveItem(keyprop);
     }
   }
 
@@ -74,8 +72,9 @@ class App extends React.Component {
                 (item.isEditing)
                 ? <TodoEditForm
                   key={item.id}
+                  keyprop={item.id}
                   todoText={item.title}
-                  onItemUpdate={(title) => { this.handleEditItemUpdate(index, title); }}
+                  onItemUpdate={(title) => { this.handleEditItemUpdate(item.id, title); }}
                 />
                 : <TodoItem
                   key={item.id}
