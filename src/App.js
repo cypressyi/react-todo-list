@@ -3,6 +3,7 @@ import TodoList from './components/TodoList';
 import TodoItem from './components/TodoItem';
 import TodoAddForm from './components/TodoAddForm';
 import TodoEditForm from './components/TodoEditForm';
+import './App.css';
 
 let isFilteringOut = false;
 class App extends React.Component {
@@ -10,7 +11,14 @@ class App extends React.Component {
     super();
     this.state = {
       todoItems: [],
+      inputText: '',
     };
+  }
+
+  handleInputChange = (inputText) => {
+    this.setState({
+      inputText: inputText,
+    });
   }
 
   handleAddItem = (aItem) => {
@@ -18,6 +26,7 @@ class App extends React.Component {
 
     this.setState({
       todoItems: newItems,
+      inputText: '',
     });
   }
 
@@ -79,38 +88,43 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <TodoAddForm
-          placeholderText="Todo..."
-          onItemAdd={this.handleAddItem}
-        />
-        <TodoList onItemFilter={this.handleItemFilter}>
-          {
-            this.state.todoItems.map((item, index) => {
-              if (isFilteringOut && item.isCompleted) {
-                return null;
-              }
-              return (
-                (item.isEditing)
-                ? <TodoEditForm
-                  key={item.id}
-                  keyprop={item.id}
-                  todoText={item.title}
-                  onItemUpdate={(title) => { this.handleEditItemUpdate(item.id, title); }}
-                />
-                : <TodoItem
-                  key={item.id}
-                  keyprop={item.id}
-                  isCompleted={item.isCompleted}
-                  todoText={item.title}
-                  onItemComplete={() => { this.handleItemComplete(index); }}
-                  onItemEdit={() => { this.handleEditItem(index); }}
-                  onItemRemove={() => { this.handleRemoveItem(item.id); }}
-                />
-              );
-            })
-          }
-        </TodoList>
+      <div className="container">
+        <div className="wrapper">
+          <TodoAddForm
+            placeholderText="What need to be done."
+            inputText={this.state.inputText}
+            onItemAdd={this.handleAddItem}
+            onInputChange={this.handleInputChange}
+          />
+          <TodoList onItemFilter={this.handleItemFilter}>
+            {
+              this.state.todoItems.map((item, index) => {
+                if (isFilteringOut && item.isCompleted) {
+                  return null;
+                }
+                return (
+                  (item.isEditing)
+                  ? <TodoEditForm
+                    key={item.id}
+                    keyprop={item.id}
+                    todoText={item.title}
+                    defaultValue=""
+                    onItemUpdate={(title) => { this.handleEditItemUpdate(item.id, title); }}
+                  />
+                  : <TodoItem
+                    key={item.id}
+                    keyprop={item.id}
+                    isCompleted={item.isCompleted}
+                    todoText={item.title}
+                    onItemComplete={() => { this.handleItemComplete(index); }}
+                    onItemEdit={() => { this.handleEditItem(index); }}
+                    onItemRemove={() => { this.handleRemoveItem(item.id); }}
+                  />
+                );
+              })
+            }
+          </TodoList>
+        </div>
       </div>
     );
   }

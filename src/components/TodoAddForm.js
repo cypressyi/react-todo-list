@@ -1,36 +1,39 @@
 import React from 'react';
+import { Input, Button, Row, Col } from 'antd';
 
-function TodoAddForm({ placeholderText, inputText, onItemAdd }) {
-  let titleField;
-
+function TodoAddForm({ placeholderText, inputText, onInputChange, onItemAdd }) {
   const triggerAddItem = () => {
-    if (titleField.value.trim()) {
+    if (inputText.trim()) {
       onItemAdd({
         id: +new Date(),
-        title: titleField.value,
+        title: inputText,
         isEditing: false,
         isCompleted: false,
       });
-      titleField.value = '';
     }
   };
-
   return (
     <div>
-      <input
-        type="text"
-        placeholder={placeholderText}
-        ref={(el) => { titleField = el; }}
-        value={inputText}
-        onKeyPress={
-          (e) => {
-            if (e.key === 'Enter') {
-              triggerAddItem();
+      <Row>
+        <Col span={20}>
+          <Input
+            type="text"
+            placeholder={placeholderText}
+            onChange={(e) => { onInputChange(e.target.value); }}
+            value={inputText}
+            onKeyPress={
+              (e) => {
+                if (e.key === 'Enter') {
+                  triggerAddItem();
+                }
+              }
             }
-          }
-        }
-      />
-      <button type="button" onClick={triggerAddItem}>Add</button>
+          />
+        </Col>
+        <Col span={4}>
+          <Button type="button" onClick={triggerAddItem}>Add</Button>
+        </Col>
+      </Row>
     </div>
   );
 }
