@@ -10,7 +10,11 @@ function TodoItem({
   onItemRemove,
 }) {
   return (
-    <div className="todo-item">
+    <div className={
+      isCompleted
+      ? 'todo-item animated fadeIn'
+      : 'todo-item animated fadeIn'
+    }>
       <Row gutter={8}>
         <Col span={2}>
           <Checkbox

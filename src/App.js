@@ -1,9 +1,11 @@
 import React from 'react';
+import 'animate.css';
 import TodoList from './components/TodoList';
 import TodoItem from './components/TodoItem';
 import TodoAddForm from './components/TodoAddForm';
 import TodoEditForm from './components/TodoEditForm';
 import './App.css';
+
 
 let isFilteringOut = false;
 class App extends React.Component {
