@@ -1,14 +1,15 @@
 import React from 'react';
 import { Row, Col, Checkbox, Button } from 'antd';
+import { SortableElement } from 'react-sortable-hoc';
 
-function TodoItem({
+const TodoItem = SortableElement(({
   keyprop,
   isCompleted,
   todoText,
   onItemComplete,
   onItemEdit,
   onItemRemove,
-}) {
+}) => {
   return (
     <div className={
       isCompleted
@@ -23,7 +24,8 @@ function TodoItem({
             onClick={onItemComplete}
           />
         </Col>
-        <li
+        <li 
+          className="todo-list__item"
           keyprop={keyprop}
           onDoubleClick={onItemEdit}
         >
@@ -45,6 +47,6 @@ function TodoItem({
       </Row>
     </div>
   );
-}
+});
 
 export default TodoItem;

@@ -38,7 +38,7 @@ body {
 .todo-list {
   padding-left: 0;
 }
-.todo-list li {
+.todo-list__item {
   list-style: none;
 }
 .todo-item {

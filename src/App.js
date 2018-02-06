@@ -1,4 +1,5 @@
 import React from 'react';
+import { arrayMove } from 'react-sortable-hoc';
 import 'animate.css';
 import TodoList from './components/TodoList';
 import TodoItem from './components/TodoItem';
@@ -15,6 +16,12 @@ class App extends React.Component {
       todoItems: [],
       inputText: '',
     };
+  }
+
+  onSortEnd = ({ oldIndex, newIndex }) => {
+    this.setState({
+      todoItems: arrayMove(this.state.todoItems, oldIndex, newIndex),
+    });
   }
 
   handleInputChange = (inputText) => {
@@ -98,7 +105,11 @@ class App extends React.Component {
             onItemAdd={this.handleAddItem}
             onInputChange={this.handleInputChange}
           />
-          <TodoList onItemFilter={this.handleItemFilter}>
+          <TodoList
+            onItemFilter={this.handleItemFilter}
+            pressDelay={200}
+            onSortEnd={this.onSortEnd}
+          >
             {
               this.state.todoItems.map((item, index) => {
                 if (isFilteringOut && item.isCompleted) {
@@ -108,6 +119,7 @@ class App extends React.Component {
                   (item.isEditing)
                   ? <TodoEditForm
                     key={item.id}
+                    index={index}
                     keyprop={item.id}
                     todoText={item.title}
                     defaultValue=""
@@ -115,6 +127,7 @@ class App extends React.Component {
                   />
                   : <TodoItem
                     key={item.id}
+                    index={index}
                     keyprop={item.id}
                     isCompleted={item.isCompleted}
                     todoText={item.title}

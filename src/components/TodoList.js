@@ -1,7 +1,8 @@
 import React from 'react';
 import { Checkbox } from 'antd';
+import { SortableContainer } from 'react-sortable-hoc';
 
-function TodoList({ onItemFilter, children }) {
+const TodoList = SortableContainer(({ onItemFilter, children }) => {
   return (
     <div>
       <div className="checkbox-block">
@@ -15,6 +16,6 @@ function TodoList({ onItemFilter, children }) {
       <ul className="todo-list">{children}</ul>
     </div>
   );
-}
+});
 
 export default TodoList;

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Row, Col } from 'antd';
+import { SortableElement } from 'react-sortable-hoc';
 
-function TodoEditForm({ keyprop, todoText, onItemEmpty, onItemUpdate }) {
+const TodoEditForm = SortableElement(({ keyprop, todoText, onItemEmpty, onItemUpdate }) => {
   let titleField;
-
   return (
     <Row gutter={8}>
       <Col span={22} offset={2}>
@@ -32,6 +32,6 @@ function TodoEditForm({ keyprop, todoText, onItemEmpty, onItemUpdate }) {
       </Col>
     </Row>
   );
-}
+});
 
 export default TodoEditForm;
