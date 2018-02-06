@@ -1,16 +1,20 @@
 import React from 'react';
 
-function TodoItem({ keyprop, todoText, onItemClick }) {
-  const handleClick = () => {
-    onItemClick(keyprop);
-  };
-
+function TodoItem({ keyprop, todoText, onItemEdit, onItemRemove }) {
   return (
     <li
       keyprop={keyprop}
-      onClick={handleClick}
+      onDoubleClick={onItemEdit}
     >
       {todoText}
+      <button
+        type="button"
+        onClick={
+          () => { onItemRemove(); }
+        }
+      >
+        Remove
+      </button>
     </li>
   );
 }

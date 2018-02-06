@@ -8,6 +8,7 @@ function TodoAddForm({ placeholderText, inputText, onItemAdd }) {
       onItemAdd({
         id: +new Date(),
         title: titleField.value,
+        isEditing: false,
       });
       titleField.value = '';
     }
