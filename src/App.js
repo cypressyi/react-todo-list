@@ -4,6 +4,7 @@ import TodoItem from './components/TodoItem';
 import TodoAddForm from './components/TodoAddForm';
 import TodoEditForm from './components/TodoEditForm';
 
+let isFilteringOut = false;
 class App extends React.Component {
   constructor() {
     super();
@@ -58,6 +59,24 @@ class App extends React.Component {
     }
   }
 
+  handleItemComplete = (index) => {
+    const newItems = [...this.state.todoItems];
+    newItems[index].isCompleted = !newItems[index].isCompleted;
+    this.setState({
+      todoItems: newItems,
+    });
+  }
+
+  handleItemFilter = () => {
+    isFilteringOut = !isFilteringOut;
+
+    const newItems = [...this.state.todoItems];
+
+    this.setState({
+      todoItems: newItems,
+    });
+  }
+
   render() {
     return (
       <div>
@@ -65,9 +84,12 @@ class App extends React.Component {
           placeholderText="Todo..."
           onItemAdd={this.handleAddItem}
         />
-        <TodoList>
+        <TodoList onItemFilter={this.handleItemFilter}>
           {
             this.state.todoItems.map((item, index) => {
+              if (isFilteringOut && item.isCompleted) {
+                return null;
+              }
               return (
                 (item.isEditing)
                 ? <TodoEditForm
@@ -79,7 +101,9 @@ class App extends React.Component {
                 : <TodoItem
                   key={item.id}
                   keyprop={item.id}
+                  isCompleted={item.isCompleted}
                   todoText={item.title}
+                  onItemComplete={() => { this.handleItemComplete(index); }}
                   onItemEdit={() => { this.handleEditItem(index); }}
                   onItemRemove={() => { this.handleRemoveItem(item.id); }}
                 />

@@ -1,8 +1,16 @@
 import React from 'react';
 
-function TodoList({ children }) {
+function TodoList({ onItemFilter, children }) {
   return (
-    <ul>{children}</ul>
+    <div>
+      <input
+        type="checkbox"
+        defaultChecked
+        onClick={onItemFilter}
+      />
+      顯示已完成項目
+      <ul>{children}</ul>
+    </div>
   );
 }
 
