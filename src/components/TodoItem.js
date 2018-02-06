@@ -24,8 +24,8 @@ const TodoItem = SortableElement(({
             onClick={onItemComplete}
           />
         </Col>
-        <li 
-          className="todo-list__item"
+        <li
+          className="todo-item__text"
           keyprop={keyprop}
           onDoubleClick={onItemEdit}
         >

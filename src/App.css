@@ -35,16 +35,24 @@ body {
   margin-bottom: 10px;
   line-height: 2rem;
 }
+
 .todo-list {
   padding-left: 0;
 }
-.todo-list__item {
-  list-style: none;
-}
+
 .todo-item {
   padding: 10px 10px;
   word-wrap: break-word;
   background-color: #ffffff;
   margin-bottom: 7px;
   border-radius: 5px;
+}
+
+.todo-item__text {
+  list-style: none;
+}
+
+.todo-item__form {
+  padding: 0 10px;
+    width: 100%;
 }
