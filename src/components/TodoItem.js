@@ -1,9 +1,12 @@
 import React from 'react';
 import { Row, Col, Checkbox, Button } from 'antd';
 import { SortableElement } from 'react-sortable-hoc';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { onItemRemove, onItemEdit, onItemComplete } from '../actions/action';
 
 const TodoItem = SortableElement(({
-  keyprop,
+  id,
   isCompleted,
   todoText,
   onItemComplete,
@@ -21,13 +24,21 @@ const TodoItem = SortableElement(({
           <Checkbox
             type="checkbox"
             defaultChecked={isCompleted}
-            onClick={onItemComplete}
+            onClick={() => {
+              onItemComplete({
+                id,
+              });
+            }}
           />
         </Col>
         <li
           className="todo-item__text"
-          keyprop={keyprop}
-          onDoubleClick={onItemEdit}
+          id={id}
+          onDoubleClick={() => {
+            onItemEdit({
+              id,
+            });
+          }}
         >
           <Col xs={16} md={18}>
             {todoText}
@@ -38,7 +49,7 @@ const TodoItem = SortableElement(({
             type="button"
             size="small"
             onClick={
-              () => { onItemRemove(); }
+              () => { onItemRemove({ id }); }
             }
           >
             Remove
@@ -49,4 +60,8 @@ const TodoItem = SortableElement(({
   );
 });
 
-export default TodoItem;
+const mapDispatchToProps = (dispatch) => (
+  bindActionCreators({ onItemRemove, onItemEdit, onItemComplete }, dispatch)
+);
+
+export default connect(null, mapDispatchToProps)(TodoItem);
