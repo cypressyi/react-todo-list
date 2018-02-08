@@ -55,7 +55,7 @@ class TodoAddForm extends React.Component {
             />
           </Col>
           <Col span={4}>
-            <Button type="button" onClick={this.triggerAddItem}>Add</Button>
+            <Button className="add-btn" type="button" onClick={this.triggerAddItem}>Add</Button>
           </Col>
         </Row>
       </div>

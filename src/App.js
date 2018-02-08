@@ -23,7 +23,7 @@ class App extends React.Component {
       <div className="container">
         <div className="wrapper">
           <TodoAddForm
-            placeholderText="What need to be done."
+            placeholderText="What need to be done...?"
             inputText={this.state.inputText}
           />
           <TodoList

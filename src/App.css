@@ -6,7 +6,7 @@ html, body {
 body {
   height: 100%;
   width: 100%;
-  background-color: #cfe7ee;
+  background-color: #34495E;
 }
 
 .container {
@@ -21,19 +21,24 @@ body {
   border-radius: 5px;
   width: 100%;
   max-width: 600px;
-  background: #afd2ea;
+  background: #BDC3C7;
 }
+
 @media screen and (max-width: 576px) {
   .wrapper {
     margin: 10px;
   }
 }
 
-
 .checkbox-block {
   padding-left: 0;
-  margin-bottom: 10px;
+  margin: 10px 0;
   line-height: 2rem;
+}
+
+.add-btn {
+  width: 100%;
+  padding: 0 0;
 }
 
 .todo-list {
