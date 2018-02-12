@@ -1,9 +1,18 @@
+import {
+  ADD_ITEM,
+  REMOVE_ITEM,
+  EDIT_ITEM,
+  EDIT_ITEM_UPDATE,
+  COMPLETE_ITEM,
+  RESORT_ITEM,
+  TOGGLE_FILTER,
+} from '../constants/actionTypes';
 import { combineReducers } from 'redux';
 import { arrayMove } from 'react-sortable-hoc';
 
 function todoItems(state = [], action) {
   switch (action.type) {
-    case 'ADD_ITEM':
+    case ADD_ITEM:
     {
       return [{
         id: action.payload.id,
@@ -12,7 +21,7 @@ function todoItems(state = [], action) {
         isCompleted: false,
       }, ...state];
     }
-    case 'REMOVE_ITEM':
+    case REMOVE_ITEM:
     {
       const oldItems = [...state];
       const newItems = oldItems.filter((item) => {
@@ -20,7 +29,7 @@ function todoItems(state = [], action) {
       });
       return newItems;
     }
-    case 'EDIT_ITEM':
+    case EDIT_ITEM:
     {
       const newItems = [...state];
       newItems.forEach((item) => {
@@ -30,7 +39,7 @@ function todoItems(state = [], action) {
       });
       return newItems;
     }
-    case 'EDIT_ITEM_UPDATE':
+    case EDIT_ITEM_UPDATE:
     {
       const newItems = [...state];
       newItems.forEach((item) => {
@@ -41,7 +50,7 @@ function todoItems(state = [], action) {
       });
       return newItems;
     }
-    case 'COMPLETE_ITEM':
+    case COMPLETE_ITEM:
     {
       const newItems = [...state];
       newItems.forEach((item) => {
@@ -51,7 +60,7 @@ function todoItems(state = [], action) {
       });
       return newItems;
     }
-    case 'RESORT_ITEM':
+    case RESORT_ITEM:
     {
       const newItem = [...state];
       return arrayMove(newItem, action.payload.oldIndex, action.payload.newIndex);
@@ -63,7 +72,7 @@ function todoItems(state = [], action) {
 
 function filterOut(state = { isFilteringOut: false }, action) {
   switch (action.type) {
-    case 'TOGGLE_FILTER':
+    case TOGGLE_FILTER:
     {
       return { isFilteringOut: !state.isFilteringOut };
     }
