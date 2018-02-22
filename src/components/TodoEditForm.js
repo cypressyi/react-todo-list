@@ -5,7 +5,13 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { onItemUpdate, onItemRemove } from '../actions/action';
 
-const TodoEditForm = SortableElement(({ id, isCompleted, todoText, onItemUpdate, onItemRemove }) => {
+const TodoEditForm = SortableElement(({
+  id,
+  isCompleted,
+  todoText,
+  onItemUpdate,
+  onItemRemove,
+}) => {
   let titleField;
 
   const handleItemUpdate = () => {

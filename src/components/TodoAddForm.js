@@ -12,9 +12,10 @@ class TodoAddForm extends React.Component {
     };
   }
 
-  handleInputChange = (inputText) => {
+  handleInputChange = (e) => {
+    const newText = e.target.value;
     this.setState({
-      inputText,
+      inputText: newText,
     });
   }
 
@@ -44,7 +45,7 @@ class TodoAddForm extends React.Component {
               type="text"
               placeholder={placeholderText}
               value={inputText}
-              onChange={(e) => { this.handleInputChange(e.target.value); }}
+              onChange={this.handleInputChange}
               onKeyPress={
                 (e) => {
                   if (e.key === 'Enter') {

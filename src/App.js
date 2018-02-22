@@ -10,21 +10,13 @@ import TodoEditForm from './components/TodoEditForm';
 import './App.css';
 
 class App extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      inputText: '',
-    };
-  }
   render() {
-    const { todoItems } = this.props;
-    const { filterOut } = this.props;
+    const { todoItems, filterOut } = this.props;
     return (
       <div className="container">
         <div className="wrapper">
           <TodoAddForm
             placeholderText="What need to be done...?"
-            inputText={this.state.inputText}
           />
           <TodoList
             pressDelay={200}
